@@ -1,0 +1,19 @@
+services:
+  - name: telegram-gofile-uploader
+    type: worker
+    instance_type: nano
+    regions:
+      - was
+    env:
+      - key: BOT_TOKEN
+        value: ""
+      - key: GOFILE_TOKEN
+        value: ""
+      - key: ALLOWED_USERS
+        value: ""
+      - key: MAX_FILE_MB
+        value: "1900"
+    build:
+      type: buildpack
+      build_command: pip install -r requirements.txt
+    run_command: python main.py
